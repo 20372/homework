@@ -2,8 +2,8 @@
 <data>
   <object-set>
     <table path="main.Homework">
-      <table path="main.Work" name="work_id" from="work_id" to="student_id"/>
-      <table path="main.Students1_dg_tmp" name="student_id" from="student_id" to="school_id"/>
+      <table path="main.Work" name="work_id" from="work_id" to="Id"/>
+      <table path="main.Students1_dg_tmp" name="student_id" from="student_id" to="id"/>
     </table>
   </object-set>
 </data>
