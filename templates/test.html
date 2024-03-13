@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .screen {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #3353ff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0022ff;
+        }
+
+        #menu {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #menu button {
+            margin-right: 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>HomeWork Database</h1>
+
+    <div id="menu">
+        <button onclick="showScreen('home')">Home</button>
+        <button onclick="showScreen('data')">Students</button>
+        <button onclick="showScreen('data')">HomeWork</button>
+        <button onclick="showScreen('data')">Work</button>
+
+        <!-- Add more buttons/screens as needed -->
+    </div>
+
+    <div id="home" class="screen">
+        <h2>Welcome to the Home Screen</h2>
+        <p>Check Homework:</p>
+    </div>
+
+    <div id="data" class="screen">
+        <form id="dataForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <button type="button" onclick="addData()">Add Data</button>
+        </form>
+
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Firstname</th>
+                    <th>Surname</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let data = [students];
+
+        function addData() {
+            const nameInput = document.getElementById('name');
+            const newName = nameInput.value;
+
+            if (newName.trim() !== '') {
+                const newData = {
+                    id: data.length + 1,
+                    name: newName
+                };
+
+                data.push(newData);
+                displayData();
+                nameInput.value = '';
+            }
+        }
+
+        function displayData() {
+            const tableBody = document.querySelector('#dataTable tbody');
+            tableBody.innerHTML = '';
+
+            data.forEach((item) => {
+                const row = tableBody.insertRow();
+                const cell1 = row.insertCell(0);
+                const cell2 = row.insertCell(1);
+
+                cell1.textContent = item.id;
+                cell2.textContent = item.name;
+            });
+        }
+
+        function showScreen(screenId) {
+            const screens = document.querySelectorAll('.screen');
+            screens.forEach(screen => {
+                screen.style.display = 'none';
+            });
+
+            const selectedScreen = document.getElementById(screenId);
+            if (selectedScreen) {
+                selectedScreen.style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>

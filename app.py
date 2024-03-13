@@ -14,10 +14,14 @@ def create_connection(db_file):
     return None
 
 
+@app.route('/')
+def render_menu():
+   return render_template('home_page.html')
+
 @app.route('/home_page.html')
 def render_home_page():  # put application's code here
     con = create_connection(DATABASE)
-    query = "SELECT * FROM Homework"
+    query = "SELECT First_Name, Last_Name, title, job_type FROM Homework INNER JOIN Students1_dg_tmp ON Students1_dg_tmp.Id = Homework.student_id INNER JOIN Work ON Work.Id = work_id"
     cur = con.cursor()
     cur.execute(query)
     students = cur.fetchall()
@@ -28,4 +32,4 @@ def render_home_page():  # put application's code here
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', debug=True)
